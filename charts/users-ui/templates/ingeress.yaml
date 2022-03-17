@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: users-ui
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /users-ui(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: users-ui
+                port:
+                  number: 80

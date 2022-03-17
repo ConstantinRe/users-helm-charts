@@ -1,0 +1,39 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: users-api
+  labels:
+    k8s-app: users-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      k8s-app: users-api
+  template:
+    metadata:
+      name: users-api
+      labels:
+        k8s-app: users-api
+    spec:
+      containers:
+        - name: users-api
+          image: {{ .Values.container.image }}
+          env:
+            - name: APPLICATION_NAME
+              value: users-api
+            - name: SERVER_PORT
+              value: "8080"
+          volumeMounts:
+            - name: application-properties
+              mountPath: "/application.properties"
+              subPath: application.properties
+              readOnly: true
+      volumes:
+        - name: application-properties
+          configMap:
+            name: users-api
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 0

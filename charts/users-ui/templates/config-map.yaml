@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: users-ui
+data:
+  application.properties: |
+    service.users-endpoint=http://users-api

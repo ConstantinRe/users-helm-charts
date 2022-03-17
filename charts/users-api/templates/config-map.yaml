@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: users-api
+data:
+  application.properties: |
+    service.users[0].id=001
+    service.users[0].firstName=Ivan
+    service.users[0].lastName=Sergeev
+    service.users[1].id=002
+    service.users[1].firstName=Sergey
+    service.users[1].lastName=Ivanov

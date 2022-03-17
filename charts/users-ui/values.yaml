@@ -1,0 +1,2 @@
+container:
+  image: constantinre.dev/users-ui:1.0.0
